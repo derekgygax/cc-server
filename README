@@ -7,3 +7,7 @@
 - Update the catalina.home property in build.xml to point to the tomcat home directory
 - Copy the contents on cc-server/lib to tomcat_home/lib
 - Run <ant dist> to build dist/cc-server.war
+
+## Contact
+-Originally written by Kyle Moad
+-Edited by Derek Gygax and Chris Fogarty
