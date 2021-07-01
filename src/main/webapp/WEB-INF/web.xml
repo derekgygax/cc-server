@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name>Couples Connection API</display-name>
+  <description>
+      The API server for Couples Connection
+    </description>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <!-- Excecption catching filter -->
+  <filter>
+    <filter-name>ExceptionFilter</filter-name>
+    <filter-class>com.couplecon.filters.ExceptionCatcher</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ExceptionFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- Cors filter -->
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+      <param-name>cors.allowed.origins</param-name>
+      <param-value>http://localhost:8080</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.allowed.methods</param-name>
+      <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.allowed.headers</param-name>
+      <param-value>Authorization,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.exposed.headers</param-name>
+      <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.support.credentials</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>cors.preflight.maxage</param-name>
+      <param-value>10</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- Authentication filter -->
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.couplecon.filters.Auth</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/get-profiles</url-pattern>
+    <url-pattern>/update-partner</url-pattern>
+    <url-pattern>/update-couple</url-pattern>
+    <url-pattern>/create-couple</url-pattern>
+	<url-pattern>/create-couple-requirement</url-pattern>
+    <url-pattern>/approve-profile</url-pattern>
+    <url-pattern>/get-match-status</url-pattern>
+    <url-pattern>/queue</url-pattern>
+    <url-pattern>/partner/*</url-pattern>
+    <url-pattern>/couple/*</url-pattern>
+	<url-pattern>/survey</url-pattern>
+	<url-pattern>/survey/qa</url-pattern>
+	<url-pattern>/matches</url-pattern>
+	<url-pattern>/matches/*</url-pattern>
+	<url-pattern>/search</url-pattern>
+	<url-pattern>/block/*</url-pattern>
+	<url-pattern>/send-verify-email</url-pattern>
+	<url-pattern>/change-password</url-pattern>
+	<url-pattern>/switch-user</url-pattern>
+  </filter-mapping>
+  <!-- Profile completeness filter 
+  <filter>
+    <filter-name>ProfileStatusFilter</filter-name>
+	<filter-class>com.couplecon.filters.ProfileStatus</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ProfileStatusFilter</filter-name>
+    <url-pattern>/approve-profile</url-pattern>
+    <url-pattern>/queue</url-pattern>
+  </filter-mapping> -->
+</web-app>

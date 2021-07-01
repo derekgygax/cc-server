@@ -1,0 +1,10 @@
+build/
+dist/
+build.xml
+*/*.pyc
+*/__pycache__
+target/**
+.classpath
+.settings/
+bin/
+/.vscode/**
